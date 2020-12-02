@@ -22,12 +22,12 @@ export default class Weather {
 
     //builds request URL for 5 day forcast
     buildrequestUrl2 = (cityID) => {
-        return "http://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + weatherkey;
+        return "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + weatherkey;
     }
 
     //builds request URL for 1day weather forcast
     buildRequestUrl = (city) => {
-        return "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherkey;
+        return "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + weatherkey;
     }
 
     
@@ -37,7 +37,7 @@ export default class Weather {
         //get data from api
         var response = await fetch(url);
         var jsonweatherdata = await response.json();
-        var response2 = await fetch("http://api.openweathermap.org/data/2.5/forecast?id=" + jsonweatherdata.id + "&units=imperial&appid=" + weatherkey)
+        var response2 = await fetch("https://api.openweathermap.org/data/2.5/forecast?id=" + jsonweatherdata.id + "&units=imperial&appid=" + weatherkey)
         var jsonweatherdata2 = await response2.json();
 
         //set mainpage weather information with api data
@@ -49,7 +49,7 @@ export default class Weather {
 
         cityName.innerHTML = jsonweatherdata2.city.name;
         maintemp.innerHTML = jsonweatherdata2.list[0].main.temp;
-        mainicon.src = 'http://openweathermap.org/img/wn/' + jsonweatherdata2.list[0].weather[0].icon + '@2x.png';
+        mainicon.src = 'https://openweathermap.org/img/wn/' + jsonweatherdata2.list[0].weather[0].icon + '@2x.png';
         mainhiandlow.innerHTML = "Hi = " + jsonweatherdata2.list[0].main.temp_max + " / Low = " + jsonweatherdata2.list[0].main.temp_min;
         maindescr.innerHTML = jsonweatherdata2.list[0].weather[0].description;
 
@@ -61,11 +61,11 @@ export default class Weather {
         const img5 = document.getElementById("img5");
         const img6 = document.getElementById("img6");
 
-        img2.src = 'http://openweathermap.org/img/wn/' + jsonweatherdata2.list[1].weather[0].icon + '@2x.png';
-        img3.src = 'http://openweathermap.org/img/wn/' + jsonweatherdata2.list[2].weather[0].icon + '@2x.png';
-        img4.src = 'http://openweathermap.org/img/wn/' + jsonweatherdata2.list[3].weather[0].icon + '@2x.png';
-        img5.src = 'http://openweathermap.org/img/wn/' + jsonweatherdata2.list[4].weather[0].icon + '@2x.png';
-        img6.src = 'http://openweathermap.org/img/wn/' + jsonweatherdata2.list[5].weather[0].icon + '@2x.png';
+        img2.src = 'https://openweathermap.org/img/wn/' + jsonweatherdata2.list[1].weather[0].icon + '@2x.png';
+        img3.src = 'https://openweathermap.org/img/wn/' + jsonweatherdata2.list[2].weather[0].icon + '@2x.png';
+        img4.src = 'https://openweathermap.org/img/wn/' + jsonweatherdata2.list[3].weather[0].icon + '@2x.png';
+        img5.src = 'https://openweathermap.org/img/wn/' + jsonweatherdata2.list[4].weather[0].icon + '@2x.png';
+        img6.src = 'https://openweathermap.org/img/wn/' + jsonweatherdata2.list[5].weather[0].icon + '@2x.png';
         
         const temp2 = document.getElementById("temp2");
         const temp3 = document.getElementById("temp3");
@@ -107,5 +107,3 @@ export default class Weather {
     }
 
 }
-
-

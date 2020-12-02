@@ -17,9 +17,4 @@ const initApp = () => {
 
     
     currentWeather.getForcast();
-    console.log(currentWeather.currenttemp);
-    
-
 }
-
-
