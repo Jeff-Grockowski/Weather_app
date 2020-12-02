@@ -14,15 +14,21 @@ const initApp = () => {
 
     let current = "Hays";
 
-
+    try {
     //get user input for weather retreiveal create instance of weather class
     current = localStorage.getItem("city");
-    let currentWeather = new weather(current);
 
     if(current === '') {
-        alert("please enter a city")
+        current = "hays";
     }
-    else {
+
+
+    let currentWeather = new weather(current);
+    currentWeather.getForcast();
+    }
+    catch(err){
+        current = 'hays'
+        let currentWeather = new weather(current);
         currentWeather.getForcast();
     }
 

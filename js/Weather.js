@@ -5,6 +5,7 @@ export default class Weather {
         this.cityID = 0;
     }
 
+
     postweather = (weather) => {
         console.log(weather);
     }
@@ -19,15 +20,19 @@ export default class Weather {
     // fetches the jSON and assigns to attributes
     weatherinfo = async (url) => {
         //get data from api
+        try {
         var response = await fetch(url);
         var jsonweatherdata = await response.json();
         var response2 = await fetch("https://api.openweathermap.org/data/2.5/forecast?id=" + jsonweatherdata.id + "&units=imperial&appid=" + weatherkey)
         var jsonweatherdata2 = await response2.json();
 
-
+        //get date information for current forcast
+        let dateObj = new Date(jsonweatherdata2.list[0].dt * 1000);
+        //units display for temperature
         var degrees = "° F";
 
         //set mainpage weather information with api data
+        //create selectors for main weather forcast
         const maintemp = document.getElementById("maintemp");
         const mainicon = document.getElementById("mainicon");
         const cityName = document.getElementById("cityName");
@@ -35,8 +40,8 @@ export default class Weather {
         const maindescr = document.getElementById("maindescr");
 
         //assign main weather data
-        cityName.innerHTML = jsonweatherdata2.city.name + ", " + jsonweatherdata2.city.country;
-        maintemp.innerHTML = jsonweatherdata2.list[0].main.feels_like + degrees;
+        cityName.innerHTML = jsonweatherdata2.city.name + ", " + jsonweatherdata2.city.country + " on " + dateObj.toDateString();
+        maintemp.innerHTML = "Feels like: " + jsonweatherdata2.list[0].main.feels_like + degrees;
         mainicon.src = 'https://openweathermap.org/img/wn/' + jsonweatherdata2.list[0].weather[0].icon + '@2x.png';
         mainhiandlow.innerHTML = "Hi = " + jsonweatherdata2.list[0].main.temp_max + degrees + " / Low = " + jsonweatherdata2.list[0].main.temp_min + degrees;
         maindescr.innerHTML = jsonweatherdata2.list[0].weather[0].description;
@@ -85,10 +90,14 @@ export default class Weather {
         descr4.innerHTML = jsonweatherdata2.list[4].weather[0].description;
         descr5.innerHTML = jsonweatherdata2.list[5].weather[0].description;
 
-
-        console.log(jsonweatherdata2);
-        console.log(jsonweatherdata);
         return jsonweatherdata2;
+        }
+
+        //if city is not found by api, retunn to default city and rerun
+        catch(err) {
+            this.city = "hays"
+            this.getForcast();
+        }
     }
 
 
@@ -96,7 +105,6 @@ export default class Weather {
     getForcast = async () => {
         var requestUrl = this.buildRequestUrl(this.city);
         await this.weatherinfo(requestUrl);1
-        console.log("Done");
     }
 
 }

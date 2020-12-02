@@ -12,7 +12,6 @@ h1 {
 html, body {
   font-size: 16px;
   font-family: "montserrat", sans-serif;
-  color: #000;
   width: 100%;
   min-height: 100%;
 }
@@ -23,9 +22,14 @@ html, body {
   }
 }
 
+html {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://www.queenelizabethparkuganda.com/wp-content/uploads/2019/03/placeholder_thumb_1152x648.jpg");
+}
+
 body {
-  padding: 20px;
-  background-color: #4a90e2;
+  padding: 20%;
 }
 
 section {
@@ -37,16 +41,12 @@ section {
   border-radius: 10px;
 }
 
-#container {
-  margin-bottom: 5%;
-}
-
 .button {
   width: 30%;
   min-width: 48px;
   min-height: 48px;
   color: blue;
-  border: 2px solid red;
+  border: 2px solid lightgray;
   border-radius: 10px;
   outline: none;
 }
@@ -94,7 +94,7 @@ input[type="text"]:hover {
 
 button {
   font-size: 1.5rem;
-  background-color: #4caf50;
+  background-color: #4a90e2;
 }
 
 @media only screen and (min-width: 768px) {

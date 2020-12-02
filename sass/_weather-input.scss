@@ -3,7 +3,7 @@
     min-width: 48px;
     min-height: 48px;
     color: blue;
-    border: 2px solid red;
+    border: 2px solid lightgray;
     border-radius: 10px;
     outline: none;
 }
@@ -43,7 +43,7 @@ input[type="text"]:hover {
 
 button {
     font-size: 1.5rem;
-    background-color: $button-color;
+    background-color: $background-color;
     @include mq(768px) {
         font-size: 1.5rem;
     }
