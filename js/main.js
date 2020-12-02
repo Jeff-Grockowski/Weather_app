@@ -11,10 +11,20 @@ document.addEventListener("readystatechange", (event) => {
 
 
 const initApp = () => {
-    //get user input for weather retreiveal
-    let current = localStorage.getItem("city");
-    let currentWeather= new weather(current);
 
-    
-    currentWeather.getForcast();
+    let current = "Hays";
+
+
+    //get user input for weather retreiveal create instance of weather class
+    current = localStorage.getItem("city");
+    let currentWeather = new weather(current);
+
+    if(current === '') {
+        alert("please enter a city")
+    }
+    else {
+        currentWeather.getForcast();
+    }
+
+    // weather class to get and display weather
 }
